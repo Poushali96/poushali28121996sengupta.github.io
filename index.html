@@ -108,6 +108,30 @@
         .contact-links i {
             font-size: 1.1rem;
         }
+        .lang-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+.lang-toggle button {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+    margin-left: 0.5rem;
+}
+.lang-toggle button:hover {
+    background: rgba(255,255,255,0.3);
+}
+.lang-toggle button.active {
+    background: var(--secondary);
+    border-color: var(--secondary);
+}
        
         /* Navigation */
         nav {
@@ -431,6 +455,11 @@
     </style>
 </head>
 <body>
+    <!-- Language Toggle in Header -->
+    <div class="lang-toggle">
+        <button id="lang-en" class="active" data-lang="en">EN</button>
+        <button id="lang-no" data-lang="no">NO</button>
+    </div>
     <!-- Header -->
     <header>
         <div class="container">
@@ -986,6 +1015,7 @@
         </div>
     </footer>
     <!-- Smooth Scroll Script -->
+    <!-- Smooth Scroll Script -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -995,7 +1025,6 @@
                 });
             });
         });
-
         // Intersection Observer for animations on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1004,10 +1033,44 @@
                 }
             });
         });
-
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
+
+        // Language Toggle Script
+        let currentLang = 'en';
+        document.documentElement.lang = currentLang;
+
+        const langButtons = document.querySelectorAll('.lang-toggle button');
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const newLang = btn.dataset.lang;
+                if (newLang !== currentLang) {
+                    currentLang = newLang;
+                    document.documentElement.lang = currentLang;
+                    updateLanguage(currentLang);
+                    langButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en][data-no]');
+            elements.forEach(el => {
+                el.textContent = el.dataset[`${lang}`] || el.textContent;
+            });
+            // Update title
+            document.title = document.querySelector('title').dataset[`${lang}`];
+            // Update meta description if needed
+            const meta = document.querySelector(`meta[name="description"][lang="${lang}"]`);
+            if (meta) {
+                // Meta updates require reload for SEO, but for display it's fine
+            }
+        }
+
+        // Initial load
+        updateLanguage(currentLang);
     </script>
 </body>
 </html>
