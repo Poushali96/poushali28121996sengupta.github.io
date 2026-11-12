@@ -447,6 +447,39 @@
         .timeline-item:nth-child(7) { animation-delay: 0.7s; }
         .timeline-item:nth-child(8) { animation-delay: 0.8s; }
         .timeline-item:nth-child(9) { animation-delay: 0.9s; }
+
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+            gap: 1rem;
+        }
+
+        .hobby-card {
+            padding: 1.4rem 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--hobby-accent);
+            background: var(--hobby-background);
+        }
+
+        .hobby-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .hobby-card i {
+            color: var(--hobby-accent);
+            margin-right: 0.35rem;
+        }
+
+        .hobby-card--painting {
+            --hobby-accent: #a64533;
+            --hobby-background: #fcf3ed;
+        }
+
+        .hobby-card--recitation {
+            --hobby-accent: #466557;
+            --hobby-background: #eef6f0;
+        }
     </style>
 </head>
 <body>
@@ -486,6 +519,7 @@
                 <li><a href="#organizational" data-en="Organizational" data-no="Organisatorisk">Organizational</a></li>
                 <li><a href="#publications" data-en="Publications" data-no="Publikasjoner">Publications</a></li>
                 <li><a href="#skills" data-en="Skills" data-no="Ferdigheter">Skills</a></li>
+                <li><a href="#hobbies" data-en="Hobbies" data-no="Hobbyer">Hobbies</a></li>
                 <li><a href="#misc" data-en="Miscellaneous" data-no="Diverse">Miscellaneous</a></li>
             </ul>
         </div>
@@ -973,7 +1007,7 @@
         </section>
         <!-- Skills and Personal Interests -->
         <section id="skills">
-            <h2 data-en="Skills and Personal Interests" data-no="Ferdigheter og Personlige Interesser">Skills and Personal Interests</h2>
+            <h2 data-en="Skills" data-no="Ferdigheter">Skills</h2>
           
             <div class="skills-grid">
                 <div class="skill-category">
@@ -1001,14 +1035,19 @@
                         <li data-en="..." data-no="...">...</li>
                     </ul>
                 </div>
-              
-                <div class="skill-category">
-                    <h3 data-en="<i class='fas fa-palette'></i> Hobbies" data-no="<i class='fas fa-palette'></i> Hobbyer"><i class="fas fa-palette"></i> Hobbies</h3>
-                    <ul>
-                        <li data-en="Painting" data-no="Maling">Painting</li>
-                        <li data-en="Recitations" data-no="Resitasjoner">Recitations</li>
-                    </ul>
-                </div>
+            </div>
+        </section>
+        <section id="hobbies">
+            <h2 data-en="Outside Research" data-no="Utenfor forskningen">Outside Research</h2>
+            <div class="hobby-grid">
+                <article class="hobby-card hobby-card--painting">
+                    <h3><i class="fas fa-palette" aria-hidden="true"></i> <span data-en="Painting" data-no="Maling">Painting</span></h3>
+                    <p data-en="I enjoy painting in my free time. It’s a chance to slow down and play with color." data-no="Jeg liker å male på fritiden. Da kan jeg senke tempoet og leke med farger.">I enjoy painting in my free time. It’s a chance to slow down and play with color.</p>
+                </article>
+                <article class="hobby-card hobby-card--recitation">
+                    <h3><i class="fas fa-microphone" aria-hidden="true"></i> <span data-en="Recitation" data-no="Resitasjon">Recitation</span></h3>
+                    <p data-en="I also enjoy reciting aloud and exploring how rhythm and pauses shape the way words sound." data-no="Jeg liker også å resitere høyt og utforske hvordan rytme og pauser former måten ordene lyder på.">I also enjoy reciting aloud and exploring how rhythm and pauses shape the way words sound.</p>
+                </article>
             </div>
         </section>
         <!-- Miscellaneous Experience -->
